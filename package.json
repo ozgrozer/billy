@@ -1,0 +1,15 @@
+{
+  "name": "billy",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel ./src/html/app.html --out-dir ./dist --public-url / --port 1250",
+    "build": "parcel build ./src/html/app.html --out-dir ./dist --public-url / --no-source-maps"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "1.12.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
