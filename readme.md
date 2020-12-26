@@ -1,2 +1,3 @@
 # Billy
 
+Advanced calculator app
