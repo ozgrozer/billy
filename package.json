@@ -3,7 +3,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel ./src/html/app.html --out-dir ./dist --public-url / --port 1250",
-    "build": "parcel build ./src/html/app.html --out-dir ./dist --public-url / --no-source-maps"
+    "build": "parcel build ./src/html/app.html --out-dir ./dist --public-url /billy --no-source-maps"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
