@@ -1,6 +1,15 @@
 $inputWidth: 75%;
 $outputWidth: 100% - $inputWidth;
 
+$mobile-max: 767px;
+$tablet-min: 768px;
+$tablet-max: 991px;
+$computer-min: 992px;
+$computer-max: 1199px;
+$largescreen-min: 1200px;
+$largescreen-max: 1919px;
+$widescreen-min: 1920px;
+
 * {
   box-sizing: border-box;
 }
@@ -27,11 +36,18 @@ body {
   margin: 0;
   float: left;
   height: 100%;
-  padding: 50px;
-  font-size: 18px;
-  line-height: 32px;
   font-family: Menlo;
   white-space: pre-wrap;
+  @media (max-width: $tablet-max) {
+    padding: 15px;
+    font-size: 14px;
+    line-height: 28px;
+  }
+  @media (min-width: $computer-min) {
+    padding: 50px;
+    font-size: 18px;
+    line-height: 36px;
+  }
 }
 
 #input {
