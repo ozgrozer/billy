@@ -1,5 +1,6 @@
 {
   "name": "billy",
+  "description": "Advanced calculator app",
   "license": "MIT",
   "scripts": {
     "dev": "parcel ./src/html/app.html --out-dir ./dist --public-url / --port 1250",
