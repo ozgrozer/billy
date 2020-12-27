@@ -12,7 +12,7 @@ const sanitize = input => {
 }
 
 const App = () => {
-  const defaultInput = '<div>first = 5</div><div>second = 6</div><div>add = first + second</div><div>multiply = first * second</div>'
+  const defaultInput = '<div>first = 9</div><div>second = 7</div><div>add = first + second</div><div>multiply = first * second</div><div><br></div><div>first - second</div>'
 
   const [output, setOutput] = useState()
 

@@ -15,23 +15,23 @@ const stringIncludesArray = props => {
 const operators = ['+', '-', '*', '/', '%']
 
 const lineHasOperator = props => {
-  const { variableValue, operatorInVariableValue } = props
+  const { value, operator } = props
 
   let lineResult
 
-  const splitVariableValue = variableValue.split(operatorInVariableValue)
-  const firstVariable = parseInt(variables[splitVariableValue[0]])
-  const secondVariable = parseInt(variables[splitVariableValue[1]])
+  const splitValue = value.split(operator)
+  const firstVariable = parseInt(variables[splitValue[0]])
+  const secondVariable = parseInt(variables[splitValue[1]])
 
-  if (operatorInVariableValue === '+') {
+  if (operator === '+') {
     lineResult = firstVariable + secondVariable
-  } else if (operatorInVariableValue === '-') {
+  } else if (operator === '-') {
     lineResult = firstVariable - secondVariable
-  } else if (operatorInVariableValue === '*') {
+  } else if (operator === '*') {
     lineResult = firstVariable * secondVariable
-  } else if (operatorInVariableValue === '/') {
+  } else if (operator === '/') {
     lineResult = firstVariable / secondVariable
-  } else if (operatorInVariableValue === '%') {
+  } else if (operator === '%') {
     lineResult = firstVariable % secondVariable
   }
 
@@ -44,15 +44,15 @@ const lineHasEquals = props => {
   let lineResult
 
   const variable = splitEqualSigns[0]
-  const variableValue = splitEqualSigns[1]
-  variables[variable] = variableValue
+  const value = splitEqualSigns[1]
+  variables[variable] = value
 
-  const operatorInVariableValue = stringIncludesArray({ array: operators, value: variableValue })
+  const operator = stringIncludesArray({ array: operators, value })
 
-  if (operatorInVariableValue) {
-    lineResult = lineHasOperator({ variableValue, operatorInVariableValue })
+  if (operator) {
+    lineResult = lineHasOperator({ value, operator })
   } else {
-    lineResult = variableValue
+    lineResult = value
   }
 
   return lineResult
@@ -73,7 +73,13 @@ const calculate = input => {
     if (equalSignLength === 1) {
       lineResult = lineHasEquals({ splitEqualSigns })
     } else {
-      lineResult = line
+      const operator = stringIncludesArray({ array: operators, value: line })
+
+      if (operator) {
+        lineResult = lineHasOperator({ value: line, operator })
+      } else {
+        lineResult = line
+      }
     }
 
     lineResults.push(lineResult)
