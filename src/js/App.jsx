@@ -8,7 +8,6 @@ const sanitize = input => {
   const div = document.createElement('div')
   div.innerHTML = input.replace(/<\/div>/g, '</div>\n')
   const text = div.textContent || div.innerText || ''
-  console.log(text)
   return text
 }
 
