@@ -12,9 +12,53 @@ const stringIncludesArray = props => {
   return result
 }
 
-const calculate = input => {
-  const operators = ['+', '-', '*', '/', '%']
+const operators = ['+', '-', '*', '/', '%']
 
+const lineHasOperator = props => {
+  const { variableValue, operatorInVariableValue } = props
+
+  let lineResult
+
+  const splitVariableValue = variableValue.split(operatorInVariableValue)
+  const firstVariable = parseInt(variables[splitVariableValue[0]])
+  const secondVariable = parseInt(variables[splitVariableValue[1]])
+
+  if (operatorInVariableValue === '+') {
+    lineResult = firstVariable + secondVariable
+  } else if (operatorInVariableValue === '-') {
+    lineResult = firstVariable - secondVariable
+  } else if (operatorInVariableValue === '*') {
+    lineResult = firstVariable * secondVariable
+  } else if (operatorInVariableValue === '/') {
+    lineResult = firstVariable / secondVariable
+  } else if (operatorInVariableValue === '%') {
+    lineResult = firstVariable % secondVariable
+  }
+
+  return lineResult
+}
+
+const lineHasEquals = props => {
+  const { splitEqualSigns } = props
+
+  let lineResult
+
+  const variable = splitEqualSigns[0]
+  const variableValue = splitEqualSigns[1]
+  variables[variable] = variableValue
+
+  const operatorInVariableValue = stringIncludesArray({ array: operators, value: variableValue })
+
+  if (operatorInVariableValue) {
+    lineResult = lineHasOperator({ variableValue, operatorInVariableValue })
+  } else {
+    lineResult = variableValue
+  }
+
+  return lineResult
+}
+
+const calculate = input => {
   const lineResults = []
 
   const lines = input.split('\n')
@@ -27,31 +71,7 @@ const calculate = input => {
     const equalSignLength = splitEqualSigns.length - 1
 
     if (equalSignLength === 1) {
-      const variable = splitEqualSigns[0]
-      const value = splitEqualSigns[1]
-      variables[variable] = value
-
-      const lineHasOperator = stringIncludesArray({ array: operators, value })
-
-      if (lineHasOperator) {
-        const splitValue = value.split(lineHasOperator)
-        const firstVariable = parseInt(variables[splitValue[0]])
-        const secondVariable = parseInt(variables[splitValue[1]])
-
-        if (lineHasOperator === '+') {
-          lineResult = firstVariable + secondVariable
-        } else if (lineHasOperator === '-') {
-          lineResult = firstVariable - secondVariable
-        } else if (lineHasOperator === '*') {
-          lineResult = firstVariable * secondVariable
-        } else if (lineHasOperator === '/') {
-          lineResult = firstVariable / secondVariable
-        } else if (lineHasOperator === '%') {
-          lineResult = firstVariable % secondVariable
-        }
-      } else {
-        lineResult = value
-      }
+      lineResult = lineHasEquals({ splitEqualSigns })
     } else {
       lineResult = line
     }
