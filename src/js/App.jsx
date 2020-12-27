@@ -5,7 +5,7 @@ import './../css/style.scss'
 import calculate from './calculate'
 
 const App = () => {
-  const defaultInput = 'i = 5\nj = 6\nk = i + j\nk = i * j\n'
+  const defaultInput = 'first = 5\nsecond = 6\nadd = first + second\nmultiply = first * second\n'
 
   const [output, setOutput] = useState()
 
