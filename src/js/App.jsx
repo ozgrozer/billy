@@ -12,7 +12,7 @@ const sanitize = input => {
 }
 
 const App = () => {
-  const defaultInput = '<div>first = 9</div><div>second = 7</div><div>add = first + second</div><div>multiply = first * second</div><div><br></div><div>first - second</div>'
+  const defaultInput = '<div>first = 80</div><div>second = 40</div><div><br></div><div>add = first + second</div><div>subtract = first - second</div><div>multiply = first * second</div><div><br></div><div>first / second</div><div>first % second</div>'
   const input = sanitize(defaultInput)
   const defaultOutput = calculate(input)
 
