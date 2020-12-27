@@ -4,18 +4,27 @@ import ReactDOM from 'react-dom'
 import './../css/style.scss'
 import calculate from './calculate'
 
+const sanitize = input => {
+  const div = document.createElement('div')
+  div.innerHTML = input.replace(/<\/div>/g, '</div>\n')
+  const text = div.textContent || div.innerText || ''
+  console.log(text)
+  return text
+}
+
 const App = () => {
-  const defaultInput = 'first = 5\nsecond = 6\nadd = first + second\nmultiply = first * second\n'
+  const defaultInput = '<div>first = 5</div><div>second = 6</div><div>add = first + second</div><div>multiply = first * second</div>'
 
   const [output, setOutput] = useState()
 
   useEffect(() => {
-    const output = calculate(defaultInput)
+    const input = sanitize(defaultInput)
+    const output = calculate(input)
     setOutput(output)
   }, [])
 
-  const inputOnChange = (e) => {
-    const input = e.target.textContent
+  const inputOnChange = e => {
+    const input = sanitize(e.target.innerHTML)
     const output = calculate(input)
     setOutput(output)
   }
@@ -27,9 +36,8 @@ const App = () => {
         contentEditable
         onInput={inputOnChange}
         suppressContentEditableWarning
-      >
-        {defaultInput}
-      </div>
+        dangerouslySetInnerHTML={{ __html: defaultInput }}
+      />
       <div id='line' />
       <div id='output'>{output}</div>
     </div>
