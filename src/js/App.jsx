@@ -21,7 +21,7 @@ const App = () => {
   const [output, setOutput] = useState(defaultOutput)
 
   const inputOnChange = e => {
-    const input = sanitize(e.target.innerHTML)
+    const input = sanitize(e.target.value)
     const output = calculate(input)
     setOutput(output)
     window.localStorage.setItem('input', input)
@@ -29,12 +29,10 @@ const App = () => {
 
   return (
     <div id='app'>
-      <div
+      <textarea
         id='input'
-        contentEditable
-        onInput={inputOnChange}
-        suppressContentEditableWarning
-        dangerouslySetInnerHTML={{ __html: defaultInput }}
+        value={defaultInput}
+        onChange={inputOnChange}
       />
       <div id='line' />
       <div id='output'>{output}</div>

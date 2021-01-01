@@ -26,7 +26,16 @@ html, body, #root, #app {
 body {
   margin: 0;
   background-color: #212226;
+}
+
+body, textarea {
   font-family: Menlo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+textarea {
+  border: none;
+  resize: none;
+  background-color: transparent;
 }
 
 #app {
