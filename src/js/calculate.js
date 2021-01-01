@@ -24,7 +24,7 @@ const lineHasOperator = props => {
   const firstVariable = /^\d+$/.test(firstValue)
     ? parseInt(firstValue)
     : parseInt(variables[firstValue])
-  const secondVariable = /^\d+$/.test(firstValue)
+  const secondVariable = /^\d+$/.test(secondValue)
     ? parseInt(secondValue)
     : parseInt(variables[secondValue])
 
