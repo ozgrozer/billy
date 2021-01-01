@@ -64,7 +64,6 @@ const lineHasEquals = props => {
 
   const variable = splitEqualSigns[0]
   const value = splitEqualSigns[1]
-  variables[variable] = value
 
   const operator = stringIncludesArray({ array: operators, value })
 
@@ -73,6 +72,8 @@ const lineHasEquals = props => {
   } else {
     lineResult = value
   }
+
+  variables[variable] = lineResult
 
   return lineResult
 }
