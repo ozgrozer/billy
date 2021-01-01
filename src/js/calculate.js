@@ -22,11 +22,11 @@ const lineHasOperator = props => {
   const firstValue = splitValue[0]
   const secondValue = splitValue[1]
   const firstVariable = /^\d+$/.test(firstValue)
-    ? parseInt(firstValue)
-    : parseInt(variables[firstValue])
+    ? parseFloat(firstValue)
+    : parseFloat(variables[firstValue])
   const secondVariable = /^\d+$/.test(secondValue)
-    ? parseInt(secondValue)
-    : parseInt(variables[secondValue])
+    ? parseFloat(secondValue)
+    : parseFloat(variables[secondValue])
 
   if (operator === '+') {
     lineResult = firstVariable + secondVariable
