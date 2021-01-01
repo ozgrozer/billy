@@ -26,6 +26,7 @@ html, body, #root, #app {
 body {
   margin: 0;
   background-color: #212226;
+  font-family: Menlo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 #app {
@@ -36,7 +37,6 @@ body {
   margin: 0;
   float: left;
   height: 100%;
-  font-family: Menlo;
   white-space: pre-wrap;
   @media (max-width: $tablet-max) {
     padding: 15px;
