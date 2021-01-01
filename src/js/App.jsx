@@ -6,7 +6,7 @@ import calculate from './calculate'
 
 const App = () => {
   const localStorageInput = window.localStorage.getItem('input')
-  const _defaultInput = 'first = 80\nsecond = 40\n\nadd = first + second\nsubtract = first - second\nmultiply = first * second\n\nfirst / second\nfirst % second\n'
+  const _defaultInput = 'first = 80\nsecond = 40\n\nadd = first + second\nsubtract = first - second\nmultiply = first * second\n\nfirst + 20\n\nfirst / second\nfirst % second\n'
   const defaultInput = localStorageInput || _defaultInput
   const defaultOutput = calculate(defaultInput)
 
