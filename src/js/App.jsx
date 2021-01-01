@@ -10,11 +10,13 @@ const App = () => {
   const defaultInput = localStorageInput || _defaultInput
   const defaultOutput = calculate(defaultInput)
 
+  const [input, setInput] = useState(defaultInput)
   const [output, setOutput] = useState(defaultOutput)
 
   const inputOnChange = e => {
     const input = e.target.value
     const output = calculate(input)
+    setInput(input)
     setOutput(output)
     window.localStorage.setItem('input', input)
   }
@@ -23,7 +25,7 @@ const App = () => {
     <div id='app'>
       <textarea
         id='input'
-        value={defaultInput}
+        value={input}
         onChange={inputOnChange}
       />
       <div id='line' />
