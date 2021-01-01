@@ -1,4 +1,5 @@
 const variables = {}
+const operators = ['+', '-', '*', '/', '%']
 
 const stringIncludesArray = props => {
   const { array, value } = props
@@ -12,16 +13,20 @@ const stringIncludesArray = props => {
   return result
 }
 
-const operators = ['+', '-', '*', '/', '%']
-
 const lineHasOperator = props => {
   const { value, operator } = props
 
   let lineResult
 
   const splitValue = value.split(operator)
-  const firstVariable = parseInt(variables[splitValue[0]])
-  const secondVariable = parseInt(variables[splitValue[1]])
+  const firstValue = splitValue[0]
+  const secondValue = splitValue[1]
+  const firstVariable = /^\d+$/.test(firstValue)
+    ? parseInt(firstValue)
+    : parseInt(variables[firstValue])
+  const secondVariable = /^\d+$/.test(firstValue)
+    ? parseInt(secondValue)
+    : parseInt(variables[secondValue])
 
   if (operator === '+') {
     lineResult = firstVariable + secondVariable
@@ -33,6 +38,20 @@ const lineHasOperator = props => {
     lineResult = firstVariable / secondVariable
   } else if (operator === '%') {
     lineResult = firstVariable % secondVariable
+  }
+
+  return lineResult
+}
+
+const stringMath = value => {
+  const operator = stringIncludesArray({ array: operators, value })
+
+  let lineResult
+
+  if (operator) {
+    lineResult = lineHasOperator({ value, operator })
+  } else {
+    lineResult = value
   }
 
   return lineResult
@@ -73,13 +92,7 @@ const calculate = input => {
     if (equalSignLength === 1) {
       lineResult = lineHasEquals({ splitEqualSigns })
     } else {
-      const operator = stringIncludesArray({ array: operators, value: line })
-
-      if (operator) {
-        lineResult = lineHasOperator({ value: line, operator })
-      } else {
-        lineResult = line
-      }
+      lineResult = stringMath(line)
     }
 
     lineResults.push(lineResult)
