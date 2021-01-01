@@ -46,13 +46,7 @@ const lineHasOperator = props => {
 const stringMath = value => {
   const operator = stringIncludesArray({ array: operators, value })
 
-  let lineResult
-
-  if (operator) {
-    lineResult = lineHasOperator({ value, operator })
-  } else {
-    lineResult = value
-  }
+  const lineResult = operator ? lineHasOperator({ value, operator }) : value
 
   return lineResult
 }
@@ -60,18 +54,12 @@ const stringMath = value => {
 const lineHasEquals = props => {
   const { splitEqualSigns } = props
 
-  let lineResult
-
   const variable = splitEqualSigns[0]
   const value = splitEqualSigns[1]
 
   const operator = stringIncludesArray({ array: operators, value })
 
-  if (operator) {
-    lineResult = lineHasOperator({ value, operator })
-  } else {
-    lineResult = value
-  }
+  const lineResult = operator ? lineHasOperator({ value, operator }) : value
 
   variables[variable] = lineResult
 
